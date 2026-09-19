@@ -14,14 +14,17 @@ function Signup() {
   }
 
   return (
-    <form onSubmit={handleSignup}>
-      <h2>Sign Up</h2>
+    <div className="min-h-screen flex items-center justify-center">
+    <form onSubmit={handleSignup} className="flex flex-col gap-4 w-full max-w-sm p-4">
+      <h2 className="text-3xl font-semibold text-slate-800">Sign Up</h2>
+      <p className="text-sm text-slate-500 -mt-2">Please register to login.</p>
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-slate-700"
       />
       <input
         type="password"
@@ -29,13 +32,15 @@ function Signup() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-slate-700"
       />
-      <button type="submit">Sign Up</button>
-      <p>{message}</p>
-      <p>
+      <button type="submit" className="w-full bg-slate-800 text-white rounded-full py-3 text-sm font-medium hover:bg-slate-700 transition">Sign Up</button>
+      <p className="text-sm text-slate-600 text-center">{message}</p>
+      <p className="text-sm text-slate-500 text-center">
   Already have an account? <Link to="/login">Login</Link>
 </p>
     </form>
+    </div>
   )
 }
 
