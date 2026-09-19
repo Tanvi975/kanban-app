@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { supabase } from './supabaseClient'
 
 function Login() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
@@ -10,7 +11,11 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
-    setMessage(error ? error.message : 'Login successful!')
+    if (error) {
+      setMessage(error.message)
+    } else {
+      navigate('/board')
+    }
   }
 
   return (
@@ -33,7 +38,7 @@ function Login() {
       <button type="submit">Login</button>
       <p>{message}</p>
       <p>
-  for nnew account <Link to="/signup">Sign Up</Link>
+  New account ? <Link to="/signup">Sign Up</Link>
 </p>
     </form>
   )

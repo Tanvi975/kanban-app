@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { supabase } from './supabaseClient'
 
@@ -31,6 +32,9 @@ function Signup() {
       />
       <button type="submit">Sign Up</button>
       <p>{message}</p>
+      <p>
+  Already have an account? <Link to="/login">Login</Link>
+</p>
     </form>
   )
 }
