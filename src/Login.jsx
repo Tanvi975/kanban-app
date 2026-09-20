@@ -21,14 +21,14 @@ function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center">
     <form onSubmit={handleLogin}  className="flex flex-col gap-4 w-full max-w-sm p-4">
-      <h2 className="text-3xl font-semibold text-slate-800">Login</h2>
+      <h2 className="text-3xl font-semibold text-gray-800">Login</h2>
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-slate-700"
+        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-gray-700"
       />
       <input
         type="password"
@@ -36,11 +36,11 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
-        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-slate-700"
+        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-gray-700"
       />
-      <button type="submit" className="w-full bg-slate-800 text-white rounded-full py-3 text-sm font-medium hover:bg-slate-700 transition">Login</button>
+      <button type="submit" className="w-full bg-gray-800 text-white rounded-full py-3 text-sm font-medium hover:bg-gray-700 transition">Login</button>
       <p className="text-sm text-red-500 text-center">{message}</p>
-      <p className="text-sm text-slate-500 text-center">
+      <p className="text-sm text-gray-500 text-center">
   New account ? <Link to="/signup" className="font-semibold text-slate-800">Sign Up</Link>
 </p>
     </form>

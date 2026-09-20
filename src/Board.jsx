@@ -8,6 +8,7 @@ import AddTask from './AddTask'
 function Board() {
   const navigate = useNavigate()
   const [showForm, setShowForm] = useState(false)
+  const [editingTask, setEditingTask] = useState(null)
   
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('tasks')
@@ -31,6 +32,11 @@ function Board() {
     setTasks(tasks.filter((t) => t.id !== id))
   }
 
+  const handleUpdate = (updated) => {
+    setTasks(tasks.map((t) => (t.id === editingTask.id ? { ...t, ...updated } : t)))
+    setEditingTask(null)
+  }
+
   const columns = [
     { name: 'To do', dot: 'bg-gray-500' },
     { name: 'In progress', dot: 'bg-orange-500' },
@@ -41,6 +47,7 @@ function Board() {
     <div className="relative min-h-screen overflow-hidden bg-gray-100 p-4 md:p-8">
       <Header onLogout={handleLogout} onAdd={() => setShowForm(true)} />
       {showForm && <AddTask onSave={handleAdd} onCancel={() => setShowForm(false)} />}  
+      {editingTask && (<AddTask task={editingTask} onSave={handleUpdate} onCancel={() => setEditingTask(null)} />)}
 
       <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4">
       {columns.map((col) => (
@@ -50,6 +57,7 @@ function Board() {
             dot={col.dot}
             tasks={tasks.filter((t) => t.label === col.name)}
              onDelete={handleDelete}
+             onEdit={setEditingTask}
           />
         ))}
       </div>

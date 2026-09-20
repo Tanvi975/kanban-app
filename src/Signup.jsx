@@ -16,7 +16,7 @@ function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center">
     <form onSubmit={handleSignup} className="flex flex-col gap-4 w-full max-w-sm p-4">
-      <h2 className="text-3xl font-semibold text-slate-800">Sign Up</h2>
+      <h2 className="text-3xl font-semibold text-gray-800">Sign Up</h2>
       <p className="text-sm text-slate-500 -mt-2">Please register to login.</p>
       <input
         type="email"
@@ -32,11 +32,11 @@ function Signup() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
-        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-slate-700"
+        className="w-full bg-gray-100 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-gray-700"
       />
-      <button type="submit" className="w-full bg-slate-800 text-white rounded-full py-3 text-sm font-medium hover:bg-slate-700 transition">Sign Up</button>
-      <p className="text-sm text-slate-600 text-center">{message}</p>
-      <p className="text-sm text-slate-500 text-center">
+      <button type="submit" className="w-full bg-gray-800 text-white rounded-full py-3 text-sm font-medium hover:bg-gray-700 transition">Sign Up</button>
+      <p className="text-sm text-gray-600 text-center">{message}</p>
+      <p className="text-sm text-gray-500 text-center">
   Already have an account? <Link to="/login">Login</Link>
 </p>
     </form>
