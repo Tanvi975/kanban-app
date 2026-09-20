@@ -17,7 +17,7 @@ function Signup() {
     <div className="min-h-screen flex items-center justify-center">
     <form onSubmit={handleSignup} className="flex flex-col gap-4 w-full max-w-sm p-4">
       <h2 className="text-3xl font-semibold text-gray-800">Sign Up</h2>
-      <p className="text-sm text-slate-500 -mt-2">Please register to login.</p>
+      <p className="text-sm text-gray-500 -mt-2">Please register to login.</p>
       <input
         type="email"
         placeholder="Email"

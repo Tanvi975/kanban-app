@@ -11,7 +11,7 @@ function AddTask({  task,onSave, onCancel }) {
   }
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-200/70 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-10 flex items-center justify-center overflow-y-auto bg-gray-200/70 backdrop-blur-sm p-4">
       <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white rounded-3xl p-6 flex flex-col gap-4">
         <h2 className="text-xl font-semibold text-slate-800">{task ? 'Edit task' : 'Add task'}</h2>
 
@@ -28,7 +28,7 @@ function AddTask({  task,onSave, onCancel }) {
           rows={3}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full bg-gray-100 rounded-2xl px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-gray-700"
+          className="w-full bg-gray-100 rounded-2xl px-5 py-3 text-sm outline-none resize-none focus:ring-2 focus:ring-gray-700"
         />
         <select
           value={label}

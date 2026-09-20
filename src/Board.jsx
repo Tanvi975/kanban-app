@@ -37,10 +37,15 @@ function Board() {
     setEditingTask(null)
   }
 
+  const handleMove = (id, newLabel) => {
+    setTasks(tasks.map((t) => (t.id === id ? { ...t, label: newLabel } : t)))
+  }
+
   const columns = [
     { name: 'To do', dot: 'bg-gray-500' },
     { name: 'In progress', dot: 'bg-orange-500' },
     { name: 'Done', dot: 'bg-green-500' },
+    
   ]
 
   return (
@@ -58,6 +63,7 @@ function Board() {
             tasks={tasks.filter((t) => t.label === col.name)}
              onDelete={handleDelete}
              onEdit={setEditingTask}
+             onMove={handleMove}
           />
         ))}
       </div>
