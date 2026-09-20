@@ -1,5 +1,5 @@
 import TaskCard from './TaskCard'
-function Column({ name, dot, tasks }) {
+function Column({ name, dot, tasks, onDelete  }) {
     return (
       <div className="bg-white rounded-3xl border border-gray-200 p-4 min-h-64">
         <div className="flex items-center justify-between mb-3">
@@ -12,7 +12,7 @@ function Column({ name, dot, tasks }) {
         </div>
         <div className="flex flex-col gap-2.5">
         {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
+          <TaskCard key={task.id} task={task} onDelete={onDelete}/>
         ))}
       </div>
       </div>

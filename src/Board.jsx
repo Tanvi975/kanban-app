@@ -27,6 +27,10 @@ function Board() {
     setShowForm(false)
   }
 
+  const handleDelete = (id) => {
+    setTasks(tasks.filter((t) => t.id !== id))
+  }
+
   const columns = [
     { name: 'To do', dot: 'bg-gray-500' },
     { name: 'In progress', dot: 'bg-orange-500' },
@@ -45,6 +49,7 @@ function Board() {
             name={col.name}
             dot={col.dot}
             tasks={tasks.filter((t) => t.label === col.name)}
+             onDelete={handleDelete}
           />
         ))}
       </div>
