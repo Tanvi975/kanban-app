@@ -2,22 +2,31 @@ import { useNavigate } from 'react-router-dom'
 import { supabase } from './supabaseClient'
 import Header from './Header'
 import Column from './Column'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import AddTask from './AddTask'
 
 function Board() {
   const navigate = useNavigate()
   const [showForm, setShowForm] = useState(false)
-
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Add drag and drop', description: 'Use a library so it works on phones too.', label: 'To do' },
-    { id: 2, title: 'Build board UI', description: 'Three columns with task cards.', label: 'In progress' },
-    { id: 3, title: 'Supabase login', description: 'Signup, login and logout working.', label: 'Done' },
-  ])
+  
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem('tasks')
+    return saved ? JSON.parse(saved) : []
+  })
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
+  
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
     navigate('/login')
   }
+  const handleAdd = (newTask) => {
+    setTasks([...tasks, { id: Date.now(), ...newTask }])
+    setShowForm(false)
+  }
+
   const columns = [
     { name: 'To do', dot: 'bg-gray-500' },
     { name: 'In progress', dot: 'bg-orange-500' },
@@ -27,7 +36,7 @@ function Board() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gray-100 p-4 md:p-8">
       <Header onLogout={handleLogout} onAdd={() => setShowForm(true)} />
-      {showForm && <p className="relative mb-4 text-slate-800">Form will come here</p>}   
+      {showForm && <AddTask onSave={handleAdd} onCancel={() => setShowForm(false)} />}  
 
       <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4">
       {columns.map((col) => (
